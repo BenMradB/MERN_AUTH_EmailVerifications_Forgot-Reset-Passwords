@@ -15,7 +15,7 @@ npm i
 ```
 - Move to the `frontend` folder to install the necessary dependencies 
 ```bash
-cd frentend
+cd frontend
 npm i
 ```
 - To run only the `server` side you have to be located in the `MERN_AUTH` folder then run this command
