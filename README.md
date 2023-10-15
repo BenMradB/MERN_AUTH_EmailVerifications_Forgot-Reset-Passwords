@@ -1,5 +1,5 @@
 # MERN_AUTH
-This is a boilerplate for MERN Authentication that stores JWT in an HTTP-Only cookie. It alo uses Redux Toolikt
+This is a boilerplate for MERN Authentication that stores JWT in an HTTP-Only cookie. It alo uses Redux Toolikt + Email Verification(Nodemailer) while creating new accounts + forgot&reset password functionnality
 
 
 ## Installation
