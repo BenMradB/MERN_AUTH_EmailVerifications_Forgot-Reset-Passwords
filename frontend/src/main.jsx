@@ -6,10 +6,12 @@ import "./index.css";
 import { Provider } from "react-redux";
 import store from "./store.js";
 import {
+  ForgotPasswordScreen,
   HomeScreen,
   LoginScreen,
   ProfileScreen,
   RegisterScreen,
+  ResetPasswordScreen,
 } from "./screens";
 import {
   createBrowserRouter,
@@ -25,6 +27,12 @@ const router = createBrowserRouter(
       <Route path="/" index element={<HomeScreen />} />
       <Route path="login" index element={<LoginScreen />} />
       <Route path="register" index element={<RegisterScreen />} />
+      <Route path="forgot-password" index element={<ForgotPasswordScreen />} />
+      <Route
+        path="reset-password/:id/:token"
+        index
+        element={<ResetPasswordScreen />}
+      />
       <Route path="" element={<PrivateRoute />}>
         <Route path="profile" element={<ProfileScreen />} />
       </Route>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { FormContainer } from "../components";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRegisterMutation } from "../slices/users.api.slice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -16,7 +16,6 @@ const RegisterScreen = () => {
   const [register, { isLoading }] = useRegisterMutation();
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.auth);
 
   const submitHandler = async (e) => {
@@ -27,11 +26,10 @@ const RegisterScreen = () => {
       return;
     }
     try {
-      const res = await register({ userName, email, password }).unwrap();
-      dispatch(setCredentials({ ...res }));
-      navigate("/");
-      toast.success(
-        `${res.userName} congrats! you just create your new account .`
+      await register({ userName, email, password }).unwrap();
+      navigate("/login");
+      toast.info(
+        `Checkout your gmail account inbox. An verification link has been sen to your account.`
       );
     } catch (err) {
       toast.error(err?.data?.message || err?.error);
@@ -85,7 +83,7 @@ const RegisterScreen = () => {
           ></Form.Control>
         </Form.Group>
 
-        <Button type="submit" variant="primary" className="mt-2">
+        <Button type="submit" variant="primary" className="mt-2 w-100">
           {isLoading ? "Loading ..." : "Sign Up"}
         </Button>
 

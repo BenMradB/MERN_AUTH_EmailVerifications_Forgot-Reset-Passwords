@@ -22,11 +22,12 @@ const LoginScreen = () => {
     if (!email || !password) return;
     try {
       const res = await login({ email, password }).unwrap();
+      if (!res.verified) throw new Error("Not verified email");
       dispatch(setCredentials({ ...res }));
       navigate("/");
       toast.success(`${res.userName} just logged in`);
     } catch (err) {
-      toast.error(err?.data?.message || err?.error);
+      toast.error(err?.data?.message || err?.error || err.message);
     }
   };
 
@@ -58,13 +59,19 @@ const LoginScreen = () => {
           ></Form.Control>
         </Form.Group>
 
-        <Button type="submit" variant="primary" className="mt-2">
+        <Button type="submit" variant="primary" className="mt-2 mb-2 w-100">
           {isLoading ? "Loading ..." : "Sign In"}
         </Button>
 
-        <Row className="py-3">
+        <Row
+          className="py-3 d-flex justify-content-between"
+          styles={{ width: "100%" }}
+        >
           <Col>
             New customer? <Link to="/register">Register now</Link>
+          </Col>
+          <Col>
+            <Link to="/forgot-password">Forgot password?</Link>
           </Col>
         </Row>
       </Form>
