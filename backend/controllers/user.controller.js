@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import User from "../models/user.model.js";
 import UserVerification from "../models/user.verification.js";
 import generateToken from "../utils/generateToken.util.js";
-import { sendMails } from "../utils/nodemailerTransporter.js";
+import { sendMails } from "../utils/sendMails.js";
 
 // @Route   POST /api/users/auth
 // @Access  Public
